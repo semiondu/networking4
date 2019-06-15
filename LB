@@ -1,23 +1,41 @@
 import socket
 
+# default port for socket 
+PORT = 80
+
+#Servers addresses
+server1_ip = '192.168.0.101'
+server2_ip = '192.168.0.102'
+server3_ip = '192.168.0.103'
 
 try: 
-    s = socket.socket(socket.AF_INET, socket.SOCK_STREAM) 
-    print "Socket successfully created"
+    s1 = socket.socket(socket.AF_INET, socket.SOCK_STREAM) 
+    print "Socket2 successfully created"
 except socket.error as err: 
     print "socket creation failed with error %s" %(err) 
-  
-# default port for socket 
-port = 80
+
 try: 
-    host_ip = '192.168.0.101'
-except socket.gaierror: 
+    s2 = socket.socket(socket.AF_INET, socket.SOCK_STREAM) 
+    print "Socket2 successfully created"
+except socket.error as err: 
+    print "socket creation failed with error %s" %(err) 
+    
+try: 
+    s3 = socket.socket(socket.AF_INET, socket.SOCK_STREAM) 
+    print "Socket3 successfully created"
+except socket.error as err: 
+    print "socket creation failed with error %s" %(err) 
+
   
-    # this means could not resolve the host 
-    print "there was an error resolving the host"
-    sys.exit() 
+# connecting to server1 
+s.connect((server1_ip, port)) 
+print "the socket has successfully connected to server1 on port == %s" %(server1_ip) 
+
   
-# connecting to the server 
-s.connect((host_ip, port)) 
-  
-print "the socket has successfully connected to server1 on port == %s" %(host_ip) 
+# connecting to server2
+s2.connect((server2_ip, port)) 
+print "the socket has successfully connected to server2 on port == %s" %(server2_ip) 
+
+# connecting to server3
+s3.connect((server3_ip, port)) 
+print "the socket has successfully connected to server3 on port == %s" %(server3_ip) 
