@@ -57,4 +57,4 @@ while True:
         reply = s2.recv(1024)
         conn.send(reply)
         if not data: break
-        conn.sendall(data)
+        
