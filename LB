@@ -8,6 +8,10 @@ server1_ip = '192.168.0.101'
 server2_ip = '192.168.0.102'
 server3_ip = '192.168.0.103'
 
+musicList = []
+videoList =[]
+pictureList = []
+
 def enqueueJob(data, socket):
     print "analyzing data from", socket
     if data[0] == 'M':
