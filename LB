@@ -9,3 +9,16 @@ except socket.error as err:
   
 # default port for socket 
 port = 80
+try: 
+    host_ip = 192.168.0.101 
+except socket.gaierror: 
+  
+    # this means could not resolve the host 
+    print "there was an error resolving the host"
+    sys.exit() 
+  
+# connecting to the server 
+s.connect((host_ip, port)) 
+  
+print "the socket has successfully connected to server1 \ 
+on port == %s" %(host_ip) 
