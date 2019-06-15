@@ -55,7 +55,7 @@ while True:
         print data
         s1.send(data)
         print ('data sent to s1')
-        reply = s2.recv(1024)
+        reply = s1.recv(1024)
         print ('S1 executed. reply is: ', reply)
         conn.send(reply)
         print('reply was sent back to ', addr)
