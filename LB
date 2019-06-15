@@ -62,6 +62,5 @@ while True:
         
         if not data: break
    
-        conn.close()
+        
         SClient.listen(100)
-        continue
