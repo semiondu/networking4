@@ -56,11 +56,11 @@ while True:
         s1.send(data)
         print ('data sent to s1')
         reply = s1.recv(1024)
-        print ('S1 executed. reply is: ', reply)
+        print 'S1 executed. reply is: ', reply
         conn.send(reply)
-        print('reply was sent back to ', addr)
+        print 'reply was sent back to ', addr
         
         if not data: break
    
         
-        SClient.listen(100)
+        
