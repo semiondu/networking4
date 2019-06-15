@@ -1,6 +1,6 @@
 import socket
 
-# default port for socket 
+# default port for socket
 PORT = 80
 
 #Servers addresses
@@ -8,37 +8,37 @@ server1_ip = '192.168.0.101'
 server2_ip = '192.168.0.102'
 server3_ip = '192.168.0.103'
 
-try: 
-    s1 = socket.socket(socket.AF_INET, socket.SOCK_STREAM) 
+try:
+    s1 = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     print "Socket2 successfully created"
-except socket.error as err: 
-    print "socket creation failed with error %s" %(err) 
+except socket.error as err:
+    print "socket creation failed with error %s" %(err)
 
-try: 
-    s2 = socket.socket(socket.AF_INET, socket.SOCK_STREAM) 
+try:
+    s2 = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     print "Socket2 successfully created"
-except socket.error as err: 
-    print "socket creation failed with error %s" %(err) 
-    
-try: 
-    s3 = socket.socket(socket.AF_INET, socket.SOCK_STREAM) 
+except socket.error as err:
+    print "socket creation failed with error %s" %(err)
+
+try:
+    s3 = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     print "Socket3 successfully created"
-except socket.error as err: 
-    print "socket creation failed with error %s" %(err) 
+except socket.error as err:
+    print "socket creation failed with error %s" %(err)
 
-  
-# connecting to server1 
-s1.connect((server1_ip, PORT)) 
-print "the socket has successfully connected to server1 on port == %s" %(server1_ip) 
 
-  
+# connecting to server1
+s1.connect((server1_ip, PORT))
+print "the socket has successfully connected to server1 on port == %s" %(server1_ip)
+
+
 # connecting to server2
-s2.connect((server2_ip, PORT)) 
-print "the socket has successfully connected to server2 on port == %s" %(server2_ip) 
+s2.connect((server2_ip, PORT))
+print "the socket has successfully connected to server2 on port == %s" %(server2_ip)
 
 # connecting to server3
-s3.connect((server3_ip, PORT)) 
-print "the socket has successfully connected to server3 on port == %s" %(server3_ip) 
+s3.connect((server3_ip, PORT))
+print "the socket has successfully connected to server3 on port == %s" %(server3_ip)
 
 
 #creating a listening Socket
@@ -49,8 +49,7 @@ print "Client socket is listening"
 
 while True:
     conn, addr = SClient.accept()
-    with conn:
-        print('Connected by', addr)
+    print('Connected by', addr)
         while True:
             data = conn.recv(1024)
             print data
