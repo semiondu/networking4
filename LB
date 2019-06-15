@@ -53,10 +53,13 @@ while True:
     while True:
         data = conn.recv(1024)
         print data
-        s2.send(data)
+        s1.send(data)
+        print ('data sent to s1')
         reply = s2.recv(1024)
         conn.send(reply)
         if not data: break
+        
         conn.sendall(data)
         conn.close()
+        SClient.listen(100)
         continue
