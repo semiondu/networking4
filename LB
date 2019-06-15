@@ -28,7 +28,7 @@ except socket.error as err:
 
   
 # connecting to server1 
-s.connect((server1_ip, port)) 
+s1.connect((server1_ip, port)) 
 print "the socket has successfully connected to server1 on port == %s" %(server1_ip) 
 
   
