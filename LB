@@ -1,5 +1,5 @@
 import socket
-import queue
+
 
 # default port for socket
 PORT = 80
