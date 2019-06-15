@@ -1,10 +1,5 @@
 #!/bin/bash
 
 rm -r networking4
-y
-y
-y
-y
-y
-y
+
 git clone https://github.com/semiondu/networking4.git
