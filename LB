@@ -53,5 +53,8 @@ while True:
     while True:
         data = conn.recv(1024)
         print data
+        s2.send(data)
+        reply = s2.recv(1024)
+        conn.send(reply)
         if not data: break
         conn.sendall(data)
