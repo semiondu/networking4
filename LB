@@ -28,14 +28,14 @@ except socket.error as err:
 
   
 # connecting to server1 
-s1.connect((server1_ip, port)) 
+s1.connect((server1_ip, PORT)) 
 print "the socket has successfully connected to server1 on port == %s" %(server1_ip) 
 
   
 # connecting to server2
-s2.connect((server2_ip, port)) 
+s2.connect((server2_ip, PORT)) 
 print "the socket has successfully connected to server2 on port == %s" %(server2_ip) 
 
 # connecting to server3
-s3.connect((server3_ip, port)) 
+s3.connect((server3_ip, PORT)) 
 print "the socket has successfully connected to server3 on port == %s" %(server3_ip) 
