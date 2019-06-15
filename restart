@@ -1,6 +1,6 @@
 #!/bin/bash
 
-rm -r networking4
+rm -rf networking4
 
 git clone https://github.com/semiondu/networking4.git
 cp networking4/LB loadBalancer
