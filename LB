@@ -48,5 +48,11 @@ SClient.listen(100)
 print "Client socket is listening"
 
 while True:
-    c, addr = SClient.accept()
-    print 'got connection from', addr
+    conn, addr = SClient.accept()
+    with conn:
+        print('Connected by', addr)
+        while True:
+            data = conn.recv(1024)
+            print data
+            if not data: break
+            conn.sendall(data)
