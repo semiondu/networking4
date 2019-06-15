@@ -20,5 +20,4 @@ except socket.gaierror:
 # connecting to the server 
 s.connect((host_ip, port)) 
   
-print "the socket has successfully connected to server1 \ 
-on port == %s" %(host_ip) 
+print "the socket has successfully connected to server1 on port == %s" %(host_ip) 
