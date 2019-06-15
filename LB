@@ -1,11 +1,7 @@
 import socket
 
-
 # default port for socket
 PORT = 80
-musicList = []
-videoList = []
-picruteList = []
 
 #Servers addresses
 server1_ip = '192.168.0.101'
@@ -17,7 +13,7 @@ def enqueueJob(data, socket):
     if data[0] == 'M':
         musicList.append(data)
         print ('job of type Music was appended to music list')
-    elif data[0] == V:
+    elif data[0] == 'V':
         videoList.append(data)
         print ('job of type Video was appended to video list')
     else:
@@ -25,7 +21,6 @@ def enqueueJob(data, socket):
         print ('job of type picture was appended to picture list')
     return
         
-            
 
 try:
     s1 = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
@@ -71,14 +66,13 @@ while True:
     print('Connected by', addr)
     while True:
         data = conn.recv(1024)
-        print data[0], data[1]
-        enqueueJob(data, conn)
-        # s1.send(data)
-        # print ('data sent to s1')
-        # reply = s1.recv(1024)
-        # print 'S1 executed. reply is: ', reply
-        # conn.send(reply)
-        # print 'reply was sent back to ', addr
+        print 'data type is ' ,data[0], 'number is ' data[1]
+        s1.send(data)
+        print ('data sent to s1')
+        reply = s1.recv(1024)
+        print 'S1 executed. reply is: ', reply
+        conn.send (reply)
+        print 'reply was sent back to ', addr
         
         if not data: break
    
