@@ -1,4 +1,4 @@
-import socket
+mport socket
 
 PORT = 80
 HOST = ''
@@ -8,7 +8,7 @@ hostSocket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 hostSocket.bind((HOST, PORT))
 hostSocket.listen(1)
 conn, addr = hostSocket.accept()
-    with conn:
+with conn:
     print('Connected by', addr)
     while True:
         data = conn.recv(1024)
