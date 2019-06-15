@@ -1,12 +1,12 @@
 import socket
 
-clientSocket =socket()
-clientSocket.socket(family=AF_INET, type=SOCK_DGRAM, proto=0, fileno=None)
-clientSocket.bind(10.0.0.1)
-
-server1Socket=socket()
-serverSocket.socket(family=AF_INET, type=SOCK_STREAM, proto=0, fileno=0)
-serverSocket.connect(192.168.0.1)
+# clientSocket =socket()
+# clientSocket.socket(family=AF_INET, type=SOCK_DGRAM, proto=0, fileno=None)
+# clientSocket.bind(10.0.0.1)
+# 
+# server1Socket=socket()
+# serverSocket.socket(family=AF_INET, type=SOCK_STREAM, proto=0, fileno=0)
+# serverSocket.connect(192.168.0.1)
 
 #establish connections with servers.
 serv1= socket.socket(socket.AF_INET, socket.SOCK_STREAM)
