@@ -61,8 +61,7 @@ while True:
         print('reply was sent back to ', addr)
         
         if not data: break
-        
-        conn.sendall(data)
+   
         conn.close()
         SClient.listen(100)
         continue
