@@ -39,3 +39,14 @@ print "the socket has successfully connected to server2 on port == %s" %(server2
 # connecting to server3
 s3.connect((server3_ip, PORT)) 
 print "the socket has successfully connected to server3 on port == %s" %(server3_ip) 
+
+
+#creating a listening Socket
+SClient = socket.socket()
+SClient.bind((''), PORT)
+SClient.listen(100)
+print "Client socket is listening"
+
+while True:
+    c, addr = SClient.accept()
+    print 'got connection from', addr
