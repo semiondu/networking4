@@ -4,4 +4,5 @@ rm -r networking4
 
 git clone https://github.com/semiondu/networking4.git
 cp networking4/lb.run loadBalancer
+cp networking/LB loadBalancer
 cd loadBalancer
