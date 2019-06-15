@@ -6,6 +6,5 @@ HOST = ''
 
 import socket 
 
-ip = socket.gethostbyname('www.google.com')
-print ip
-print 3+3
+x = 3
+print x
