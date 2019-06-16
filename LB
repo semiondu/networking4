@@ -373,10 +373,10 @@ def doJob ():
                     return
 
         else:
-            reply1 = s1.recv(1024)
-            print 'S1 executed. reply is: ', reply1
-            job1.conn.send(reply1)
-            print 'reply was sent back to ', job1.addr
+            reply2 = s2.recv(1024)
+            print 'S2 executed. reply is: ', reply2
+            job2.conn.send(reply2)
+            print 'reply was sent back to ', job2.addr
 
             return
 
@@ -488,7 +488,6 @@ while True:
     conn, addr = SClient.accept()
     print('Connected by', addr)
     while True:
-
         data = conn.recv(1024)
         if not data:
             break
