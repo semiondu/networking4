@@ -12,23 +12,30 @@ musicList = []
 videoList =[]
 pictureList = []
 
-def enqueueJob(data, socket):
+class Job:
+    def __init__(self, data, conn, addr):
+        self.data = data
+        self.conn = conn
+        self.addr = addr
+
+        
+def enqueueJob(job):
     print "analyzing data from", socket
-    if data[0] == 'M':
-        musicList.append(data)
+    if job.data[0] == 'M':
+        musicList.append(job)
         print ('job of type Music was appended to music list')
     elif data[0] == 'V':
-        videoList.append(data)
+        videoList.append(job)
         print ('job of type Video was appended to video list')
     else:
-        pictureList.append(data)
+        pictureList.append(job)
         print ('job of type picture was appended to picture list')
 
-    s1.send(data)
+    s1.send(job.data)
     print ('data sent to s1')
     reply = s1.recv(1024)
     print 'S1 executed. reply is: ', reply
-    print musicList
+    
     return reply
         
 
@@ -80,7 +87,8 @@ while True:
         if not data: 
             break
         print 'data type is ' + data[0] + ' number is ' + data[1]
-        reply = enqueueJob(data, conn)
+        job = Job(data, conn, addr)
+        reply = enqueueJob(job)
         
         conn.send (reply)
         print 'reply was sent back to ', addr
