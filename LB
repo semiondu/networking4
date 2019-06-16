@@ -495,7 +495,8 @@ while True:
     enqueueJob(job)
     print 'returned from enqueueJob'
     SClient.listen(5)
-    print 'listening again'
+    conn, addr = SClient.accept()
+    print ('accepted another one', addr)
         # conn.send (reply)
         # print 'reply was sent back to ', addr
     
