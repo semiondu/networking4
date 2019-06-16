@@ -493,6 +493,7 @@ while True:
     print 'data type is ' + data[0] + ' number is ' + data[1]
     job = Job(data, conn, addr)
     enqueueJob(job)
+    print 'returned from enqueueJob'
     SClient.listen(5)
         # conn.send (reply)
         # print 'reply was sent back to ', addr
