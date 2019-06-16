@@ -483,8 +483,10 @@ print "the socket has successfully connected to server3 on port == %s" %(server3
 #creating a listening Socket
 SClient = socket.socket()
 SClient.bind(('', PORT))
-SClient.listen()
+SClient.listen(5)
+SClient.settimeout(0)
 print "Client socket is listening"
+conn, addr = SClient.accept()
 
 while True:
     for i in range(5):
@@ -497,7 +499,7 @@ while True:
         job = Job(data, conn, addr)
         enqueueJob(job)
         print 'returned from enqueueJob'
-        SClient.listen()
+        SClient.listen(0)
     doJob()
 # print musicList
 # print videoList
