@@ -372,13 +372,13 @@ def doJob ():
 
                     return
 
-            else:
-                reply1 = s1.recv(1024)
-                print 'S1 executed. reply is: ', reply1
-                job1.conn.send(reply1) 
-                print 'reply was sent back to ', job1.addr
+        else:
+            reply1 = s1.recv(1024)
+            print 'S1 executed. reply is: ', reply1
+            job1.conn.send(reply1) 
+            print 'reply was sent back to ', job1.addr
 
-                return
+            return
                     
                 
     #there are no videos and no pictures at all
