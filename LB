@@ -9,7 +9,7 @@ server2_ip = '192.168.0.102'
 server3_ip = '192.168.0.103'
 
 musicList = []
-videoList = []]
+videoList = []
 pictureList = []
 
 class Job:
