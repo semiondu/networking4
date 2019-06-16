@@ -76,7 +76,7 @@ while True:
     while True:
         data = conn.recv(1024)
         print 'data type is ' + data[0] + ' number is ' + data[1]
-        enqueueJob(data, conn)
+        reply = enqueueJob(data, conn)
         
         conn.send (reply)
         print 'reply was sent back to ', addr
