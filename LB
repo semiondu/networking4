@@ -57,6 +57,21 @@ def doJob ():
                 job3 = musicList.pop(0)
                 s3.send(job3.data)
                 print ('data sent to s3')
+
+                reply3 = s3.recv(1024)
+                print 'S3 executed. reply is: ', reply3
+                job3.conn.send(reply3)
+                print 'reply was sent back to ' ,job3.addr
+
+                reply2 = s2.recv(1024)
+                print 'S2 executed. reply is: ', reply2
+                job2.conn.send(reply2)
+                print 'reply was sent back to ', job2.addr
+
+                reply1 = s1.recv(1024)
+                print 'S1 executed. reply is: ', reply1
+                job1.conn.send(reply1) 
+                print 'reply was sent back to ', job1.addr
                 
 
             #there were 2 videos, but no music
@@ -64,13 +79,43 @@ def doJob ():
                 job3 = pictureList.pop(0)
                 s3.send(job3.data)
                 print ('data sent to s3')
+
+                reply3 = s3.recv(1024)
+                print 'S3 executed. reply is: ', reply3
+                job3.conn.send(reply3)
+                print 'reply was sent back to ' ,job3.addr
+
+                reply2 = s2.recv(1024)
+                print 'S2 executed. reply is: ', reply2
+                job2.conn.send(reply2)
+                print 'reply was sent back to ', job2.addr
+
+                reply1 = s1.recv(1024)
+                print 'S1 executed. reply is: ', reply1
+                job1.conn.send(reply1) 
+                print 'reply was sent back to ', job1.addr
                 
 
-            #there were 2 videos, no music, and less that 2 pictures
+            #there were 2 videos, no music, and less than 2 pictures
             elif len(videoList) > 3:
                 job3 = videoList.pop(0)
                 s3.send(job3.data)
                 print ('data sent to s3')
+
+                reply3 = s3.recv(1024)
+                print 'S3 executed. reply is: ', reply3
+                job3.conn.send(reply3)
+                print 'reply was sent back to ' ,job3.addr
+
+                reply2 = s2.recv(1024)
+                print 'S2 executed. reply is: ', reply2
+                job2.conn.send(reply2)
+                print 'reply was sent back to ', job2.addr
+
+                reply1 = s1.recv(1024)
+                print 'S1 executed. reply is: ', reply1
+                job1.conn.send(reply1) 
+                print 'reply was sent back to ', job1.addr
                 
 
         #there was only one video
@@ -85,6 +130,21 @@ def doJob ():
                 job3 = musicList.pop(0)
                 s3.send(job3.data)
                 print ('data sent to s3')
+
+                reply3 = s3.recv(1024)
+                print 'S3 executed. reply is: ', reply3
+                job3.conn.send(reply3)
+                print 'reply was sent back to ' ,job3.addr
+
+                reply2 = s2.recv(1024)
+                print 'S2 executed. reply is: ', reply2
+                job2.conn.send(reply2)
+                print 'reply was sent back to ', job2.addr
+
+                reply1 = s1.recv(1024)
+                print 'S1 executed. reply is: ', reply1
+                job1.conn.send(reply1) 
+                print 'reply was sent back to ', job1.addr
                  
 
             #there was only one video,there was a picture and no music     
@@ -92,6 +152,21 @@ def doJob ():
                 job3 = pictureList.pop(0)
                 s3.send(job3.data)
                 print ('data sent to s3')
+
+                reply3 = s3.recv(1024)
+                print 'S3 executed. reply is: ', reply3
+                job3.conn.send(reply3)
+                print 'reply was sent back to ' ,job3.addr
+
+                reply2 = s2.recv(1024)
+                print 'S2 executed. reply is: ', reply2
+                job2.conn.send(reply2)
+                print 'reply was sent back to ', job2.addr
+
+                reply1 = s1.recv(1024)
+                print 'S1 executed. reply is: ', reply1
+                job1.conn.send(reply1) 
+                print 'reply was sent back to ', job1.addr
                           
 
         #there was only one video, no pictures
@@ -106,6 +181,32 @@ def doJob ():
                 job2 = musicList.pop(0)
                 s2.send(job2.data)
                 print ('data sent to s2')
+
+                reply3 = s3.recv(1024)
+                print 'S3 executed. reply is: ', reply3
+                job3.conn.send(reply3)
+                print 'reply was sent back to ' ,job3.addr
+
+                reply2 = s2.recv(1024)
+                print 'S2 executed. reply is: ', reply2
+                job2.conn.send(reply2)
+                print 'reply was sent back to ', job2.addr
+
+                reply1 = s1.recv(1024)
+                print 'S1 executed. reply is: ', reply1
+                job1.conn.send(reply1) 
+                print 'reply was sent back to ', job1.addr
+
+            else: 
+                reply3 = s3.recv(1024)
+                print 'S3 executed. reply is: ', reply3
+                job3.conn.send(reply3)
+                print 'reply was sent back to ' ,job3.addr
+
+                reply1 = s1.recv(1024)
+                print 'S1 executed. reply is: ', reply1
+                job1.conn.send(reply1) 
+                print 'reply was sent back to ', job1.addr
                 
                 
     #there were no videos at all        
@@ -127,6 +228,21 @@ def doJob ():
                 job3 = musicList.pop(0)
                 s3.send(job3.data)
                 print ('data sent to s3')
+
+                reply3 = s3.recv(1024)
+                print 'S3 executed. reply is: ', reply3
+                job3.conn.send(reply3)
+                print 'reply was sent back to ' ,job3.addr
+
+                reply2 = s2.recv(1024)
+                print 'S2 executed. reply is: ', reply2
+                job2.conn.send(reply2)
+                print 'reply was sent back to ', job2.addr
+
+                reply1 = s1.recv(1024)
+                print 'S1 executed. reply is: ', reply1
+                job1.conn.send(reply1) 
+                print 'reply was sent back to ', job1.addr
                 
 
             #there were no videos, 2 pictures and no music
@@ -134,6 +250,21 @@ def doJob ():
                 job3 = pictureList.pop(0)
                 s3.send(job3.data)
                 print ('data sent to s3')
+
+                reply3 = s3.recv(1024)
+                print 'S3 executed. reply is: ', reply3
+                job3.conn.send(reply3)
+                print 'reply was sent back to ' ,job3.addr
+
+                reply2 = s2.recv(1024)
+                print 'S2 executed. reply is: ', reply2
+                job2.conn.send(reply2)
+                print 'reply was sent back to ', job2.addr
+
+                reply1 = s1.recv(1024)
+                print 'S1 executed. reply is: ', reply1
+                job1.conn.send(reply1) 
+                print 'reply was sent back to ', job1.addr
                 
 
         #there were no videos, only one picture
@@ -148,6 +279,32 @@ def doJob ():
                     job2 = musicList.pop(0)
                     s2.send(job2.data)
                     print ('data sent to s2')
+
+                    reply3 = s3.recv(1024)
+                    print 'S3 executed. reply is: ', reply3
+                    job3.conn.send(reply3)
+                    print 'reply was sent back to ' ,job3.addr
+
+                    reply2 = s2.recv(1024)
+                    print 'S2 executed. reply is: ', reply2
+                    job2.conn.send(reply2)
+                    print 'reply was sent back to ', job2.addr
+
+                    reply1 = s1.recv(1024)
+                    print 'S1 executed. reply is: ', reply1
+                    job1.conn.send(reply1) 
+                    print 'reply was sent back to ', job1.addr
+
+                else:
+                    reply3 = s3.recv(1024)
+                    print 'S3 executed. reply is: ', reply3
+                    job3.conn.send(reply3)
+                    print 'reply was sent back to ' ,job3.addr
+
+                    reply1 = s1.recv(1024)
+                    print 'S1 executed. reply is: ', reply1
+                    job1.conn.send(reply1) 
+                    print 'reply was sent back to ', job1.addr
                     
                 
     #there are no videos and no pictures at all
@@ -155,36 +312,64 @@ def doJob ():
         job3 = musicList.pop(0)
         s3.send(job3.data)
         print ('data sent to s3')
-        
+        reply3 = s3.recv(1024)
+        print 'S3 executed. reply is: ', reply3
+        job3.conn.send(reply3)
+        print 'reply was sent back to ' ,job3.addr
 
-        #there were no videos, no pictures at all
+        #there were no videos, no pictures at all and at least one music
         if len(musicList) > 2:
             job1 = pictureList.pop(0)
             s1.send(job.data)
             print ('data sent to s1')
+            reply1 = s1.recv(1024)
+            print 'S1 executed. reply is: ', reply1
+            job1.conn.send(reply1) 
+            print 'reply was sent back to ', job1.addr
             
 
-            #there were no videos, no pictures at all, and at least one music
+            #there were no videos, no pictures at all, and at least two music
             if len(musicList) > 2:
                 job2 = pictureList.pop(0)
-                s1.send(job2.data)
+                s2.send(job2.data)
                 print ('data sent to s2')
-                 
+                reply2 = s2.recv(1024)
+                print 'S2 executed. reply is: ', reply2
+                job2.conn.send(reply2)
+                print 'reply was sent back to ', job2.addr
 
-    reply1 = s1.recv(1024)
-    print 'S1 executed. reply is: ', reply1
-    job1.conn.send(reply1) 
-    print 'reply was sent back to ', job1.addr
+                reply3 = s3.recv(1024)
+                print 'S3 executed. reply is: ', reply3
+                job3.conn.send(reply3)
+                print 'reply was sent back to ' ,job3.addr
 
-    reply2 = s2.recv(1024)
-    print 'S2 executed. reply is: ', reply2
-    job2.conn.send(reply2)
-    print 'reply was sent back to ', job2.addr
+                reply2 = s2.recv(1024)
+                print 'S2 executed. reply is: ', reply2
+                job2.conn.send(reply2)
+                print 'reply was sent back to ', job2.addr
 
-    reply3 = s3.recv(1024)
-    print 'S3 executed. reply is: ', reply3
-    job3.conn.send(reply3)
-    print 'reply was sent back to ' ,job3.addr
+                reply1 = s1.recv(1024)
+                print 'S1 executed. reply is: ', reply1
+                job1.conn.send(reply1) 
+                print 'reply was sent back to ', job1.addr
+
+            else:
+                reply3 = s3.recv(1024)
+                print 'S3 executed. reply is: ', reply3
+                job3.conn.send(reply3)
+                print 'reply was sent back to ' ,job3.addr
+
+                reply1 = s1.recv(1024)
+                print 'S1 executed. reply is: ', reply1
+                job1.conn.send(reply1) 
+                print 'reply was sent back to ', job1.addr
+
+        else:
+            reply3 = s3.recv(1024)
+            print 'S3 executed. reply is: ', reply3
+            job3.conn.send(reply3)
+            print 'reply was sent back to ' ,job3.addr
+
             
     return
     
