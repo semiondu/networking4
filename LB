@@ -494,7 +494,11 @@ while True:
         print 'data type is ' + data[0] + ' number is ' + data[1]
         job = Job(data, conn, addr)
         enqueueJob(job)
-        doJob()
+        
         # conn.send (reply)
         # print 'reply was sent back to ', addr
     SClient.listen(5)
+print musicList
+print videoList
+print pictureList
+doJob()
