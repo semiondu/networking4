@@ -256,15 +256,15 @@ def doJob ():
 
     #there were no videos at all
     elif not len(pictureList) == 0:
-        job1 = pictureList.pop(0)
-        s1.send(job1.data)
-        print ('data sent to s1')
+        job2 = pictureList.pop(0)
+        s2.send(job2.data)
+        print ('data sent to s2')
 
 
         #there were no videos, but there was a picture
         if not len(pictureList) == 0:
-            job2 = pictureList.pop(0)
-            s2.send(job2.data)
+            job1 = pictureList.pop(0)
+            s1.send(job1.data)
             print ('data sent to s2')
 
 
