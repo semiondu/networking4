@@ -62,7 +62,7 @@ print "the socket has successfully connected to server3 on port == %s" %(server3
 #creating a listening Socket
 SClient = socket.socket()
 SClient.bind(('', PORT))
-SClient.listen(100)
+SClient.listen(5)
 print "Client socket is listening"
 
 while True:
@@ -78,7 +78,7 @@ while True:
         print 'S1 executed. reply is: ', reply
         conn.send (reply)
         print 'reply was sent back to ', addr
-        
+        conn.close()
         if not data: break
    
         
