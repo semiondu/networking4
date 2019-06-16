@@ -74,14 +74,18 @@ while True:
     conn, addr = SClient.accept()
     print('Connected by', addr)
     while True:
+        
         data = conn.recv(1024)
+        if not data: 
+            break
         print 'data type is ' + data[0] + ' number is ' + data[1]
         reply = enqueueJob(data, conn)
         
         conn.send (reply)
         print 'reply was sent back to ', addr
-        conn.close()
-        if not data: break
+        SClient.listen(5)
+        
+        
    
         
         
