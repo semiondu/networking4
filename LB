@@ -37,7 +37,7 @@ def enqueueJob(job):
 
     return
 
-def doJob ():
+def doJob():
     #there is a video on the list
     if not len(videoList) == 0:
         job1 = videoList.pop(0)
@@ -487,17 +487,16 @@ print "Client socket is listening"
 while True:
     conn, addr = SClient.accept()
     print('Connected by', addr)
-    while True:
-        data = conn.recv(1024)
-        if not data:
-            break
-        print 'data type is ' + data[0] + ' number is ' + data[1]
-        job = Job(data, conn, addr)
-        enqueueJob(job)
-        
+    data = conn.recv(1024)
+    if not data:
+        break
+    print 'data type is ' + data[0] + ' number is ' + data[1]
+    job = Job(data, conn, addr)
+    enqueueJob(job)
+    SClient.listen(5)
         # conn.send (reply)
         # print 'reply was sent back to ', addr
-    SClient.listen(5)
+    
 print musicList
 print videoList
 print pictureList
