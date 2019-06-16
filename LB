@@ -498,12 +498,12 @@ while True:
     enqueueJob(job)
     print 'returned from enqueueJob'
     SClient.listen(5)
+    print musicList
+    print videoList
+    print pictureList
+    doJob()
     #conn, addr = SClient.accept()
     #print ('accepted another one', addr)
         # conn.send (reply)
         # print 'reply was sent back to ', addr
     
-print musicList
-print videoList
-print pictureList
-doJob()
