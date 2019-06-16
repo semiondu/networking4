@@ -12,6 +12,8 @@ musicList = []
 videoList = []
 pictureList = []
 
+i=1
+
 class Job:
     def __init__(self, data, conn, addr):
         self.data = data
@@ -21,7 +23,7 @@ class Job:
 
 
 def enqueueJob(job):
-    print "analyzing data from", socket
+    
     if job.data[0] == 'M':
         job.type = 'music'
         musicList.append(job)
@@ -486,17 +488,18 @@ print "Client socket is listening"
 
 while True:
     conn, addr = SClient.accept()
-    print('Connected by', addr)
+    print('Connected by', addr, i)
+    i = i+1
     data = conn.recv(1024)
     if not data:
         break
-    print 'data type is ' + data[0] + ' number is ' + data[1]
+    
     job = Job(data, conn, addr)
     enqueueJob(job)
     print 'returned from enqueueJob'
     SClient.listen(5)
-    conn, addr = SClient.accept()
-    print ('accepted another one', addr)
+    #conn, addr = SClient.accept()
+    #print ('accepted another one', addr)
         # conn.send (reply)
         # print 'reply was sent back to ', addr
     
