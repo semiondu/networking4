@@ -23,7 +23,12 @@ def enqueueJob(data, socket):
     else:
         pictureList.append(data)
         print ('job of type picture was appended to picture list')
-    return
+
+    s1.send(data)
+    print ('data sent to s1')
+    reply = s1.recv(1024)
+    print 'S1 executed. reply is: ', reply
+    return reply
         
 
 try:
@@ -72,10 +77,7 @@ while True:
         data = conn.recv(1024)
         print 'data type is ' + data[0] + ' number is ' + data[1]
         enqueueJob(data, conn)
-        s1.send(data)
-        print ('data sent to s1')
-        reply = s1.recv(1024)
-        print 'S1 executed. reply is: ', reply
+        
         conn.send (reply)
         print 'reply was sent back to ', addr
         conn.close()
