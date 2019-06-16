@@ -73,7 +73,7 @@ def doJob ():
                 job1.conn.send(reply1) 
                 print 'reply was sent back to ', job1.addr
 
-                return 1
+                return
                 
 
             #there were 2 videos, but no music
@@ -97,7 +97,7 @@ def doJob ():
                 job1.conn.send(reply1) 
                 print 'reply was sent back to ', job1.addr
 
-                return 1
+                return
                 
             #there were 2 videos, no music, and less than 2 pictures
             elif len(videoList) > 3:
@@ -120,7 +120,7 @@ def doJob ():
                 job1.conn.send(reply1) 
                 print 'reply was sent back to ', job1.addr
 
-                return 1
+                return
 
             else:
                 reply2 = s2.recv(1024)
@@ -133,7 +133,7 @@ def doJob ():
                 job1.conn.send(reply1) 
                 print 'reply was sent back to ', job1.addr
 
-                return 1
+                return
                 
 
         #there was only one video
@@ -164,7 +164,7 @@ def doJob ():
                 job1.conn.send(reply1) 
                 print 'reply was sent back to ', job1.addr
 
-                return 1
+                return
             
             #there was only one video,there was a picture and no music     
             elif len(pictureList) > 2:
@@ -187,7 +187,7 @@ def doJob ():
                 job1.conn.send(reply1) 
                 print 'reply was sent back to ', job1.addr
 
-                return 1
+                return
 
             else:
                 reply2 = s2.recv(1024)
@@ -200,7 +200,7 @@ def doJob ():
                 job1.conn.send(reply1) 
                 print 'reply was sent back to ', job1.addr
 
-                return 1
+                return
                           
 
         #there was only one video, no pictures
@@ -231,7 +231,7 @@ def doJob ():
                 job1.conn.send(reply1) 
                 print 'reply was sent back to ', job1.addr
 
-                return 1
+                return
 
             else: 
                 reply3 = s3.recv(1024)
@@ -244,14 +244,14 @@ def doJob ():
                 job1.conn.send(reply1) 
                 print 'reply was sent back to ', job1.addr
 
-                return 1
+                return
         else:
             reply1 = s1.recv(1024)
             print 'S1 executed. reply is: ', reply1
             job1.conn.send(reply1) 
             print 'reply was sent back to ', job1.addr
 
-            return 1
+            return
                 
                 
     #there were no videos at all        
@@ -289,7 +289,7 @@ def doJob ():
                 job1.conn.send(reply1) 
                 print 'reply was sent back to ', job1.addr
 
-                return 1
+                return
                 
 
             #there were no videos, 2 pictures and no music
@@ -313,7 +313,7 @@ def doJob ():
                 job1.conn.send(reply1) 
                 print 'reply was sent back to ', job1.addr
 
-                return 1
+                return
 
             else:
                 reply2 = s2.recv(1024)
@@ -326,7 +326,7 @@ def doJob ():
                 job1.conn.send(reply1) 
                 print 'reply was sent back to ', job1.addr
 
-                return 1
+                return
                 
 
         #there were no videos, only one picture
@@ -357,7 +357,7 @@ def doJob ():
                     job1.conn.send(reply1) 
                     print 'reply was sent back to ', job1.addr
 
-                    return 1
+                    return
 
                 else:
                     reply3 = s3.recv(1024)
@@ -370,7 +370,7 @@ def doJob ():
                     job1.conn.send(reply1) 
                     print 'reply was sent back to ', job1.addr
 
-                    return 1
+                    return
 
         else:
             reply1 = s1.recv(1024)
@@ -378,7 +378,7 @@ def doJob ():
             job1.conn.send(reply1) 
             print 'reply was sent back to ', job1.addr
 
-            return 1
+            return
                     
                 
     #there are no videos and no pictures at all
@@ -418,7 +418,7 @@ def doJob ():
                 job1.conn.send(reply1) 
                 print 'reply was sent back to ', job1.addr
 
-                return 1
+                return
 
             else:
                 reply3 = s3.recv(1024)
@@ -431,7 +431,7 @@ def doJob ():
                 job1.conn.send(reply1) 
                 print 'reply was sent back to ', job1.addr
 
-                return 1
+                return
 
         else:
             reply3 = s3.recv(1024)
@@ -439,10 +439,10 @@ def doJob ():
             job3.conn.send(reply3)
             print 'reply was sent back to ' ,job3.addr
 
-            return 1
+            return
 
             
-    return 0
+    return
     
 
 try:
@@ -495,16 +495,10 @@ while True:
         print 'data type is ' + data[0] + ' number is ' + data[1]
         job = Job(data, conn, addr)
         enqueueJob(job)
-        
+        doJob()
         # conn.send (reply)
         # print 'reply was sent back to ', addr
         SClient.listen(5)
-print 'finished collecting works'        
-notDone = doJob()
-
-while notDone:
-    notDone = doJob()
-
         
         
    
