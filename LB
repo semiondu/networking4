@@ -499,8 +499,11 @@ while True:
         # conn.send (reply)
         # print 'reply was sent back to ', addr
         SClient.listen(5)
-while (doJob()):
-    continue
+print 'finished collecting works'        
+notDone = doJob()
+
+while notDone:
+    notDone = doJob()
 
         
         
