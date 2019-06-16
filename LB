@@ -74,20 +74,6 @@ def doJob ():
                 print 'reply was sent back to ', job1.addr
 
                 return
-
-            #servers 1+2 worked. s3 didn't
-            else:
-                reply2 = s2.recv(1024)
-                print 'S2 executed. reply is: ', reply2
-                job2.conn.send(reply2)
-                print 'reply was sent back to ', job2.addr
-
-                reply1 = s1.recv(1024)
-                print 'S1 executed. reply is: ', reply1
-                job1.conn.send(reply1) 
-                print 'reply was sent back to ', job1.addr
-
-                return
                 
 
             #there were 2 videos, but no music
@@ -112,21 +98,7 @@ def doJob ():
                 print 'reply was sent back to ', job1.addr
 
                 return
-
-            else:
-                reply2 = s2.recv(1024)
-                print 'S2 executed. reply is: ', reply2
-                job2.conn.send(reply2)
-                print 'reply was sent back to ', job2.addr
-
-                reply1 = s1.recv(1024)
-                print 'S1 executed. reply is: ', reply1
-                job1.conn.send(reply1) 
-                print 'reply was sent back to ', job1.addr
-
-                return
                 
-
             #there were 2 videos, no music, and less than 2 pictures
             elif len(videoList) > 3:
                 job3 = videoList.pop(0)
@@ -151,6 +123,7 @@ def doJob ():
                 return
 
             else:
+                reply2 = s2.recv(1024)
                 print 'S2 executed. reply is: ', reply2
                 job2.conn.send(reply2)
                 print 'reply was sent back to ', job2.addr
