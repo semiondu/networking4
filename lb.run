@@ -1,6 +1,6 @@
 #!/bin/bash
 
-#sudo python LB
+sudo python LB
 
 
-sudo python exampleLB.pyc
+#sudo python exampleLB.pyc
