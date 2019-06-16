@@ -28,6 +28,7 @@ def enqueueJob(data, socket):
     print ('data sent to s1')
     reply = s1.recv(1024)
     print 'S1 executed. reply is: ', reply
+    print musicList
     return reply
         
 
