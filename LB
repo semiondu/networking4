@@ -9,7 +9,7 @@ server2_ip = '192.168.0.102'
 server3_ip = '192.168.0.103'
 
 musicList = []
-videoList =[]
+videoList = []]
 pictureList = []
 
 class Job:
@@ -17,27 +17,216 @@ class Job:
         self.data = data
         self.conn = conn
         self.addr = addr
+        self.type = ''
 
         
 def enqueueJob(job):
     print "analyzing data from", socket
     if job.data[0] == 'M':
+        job.type = 'music'
         musicList.append(job)
         print ('job of type Music was appended to music list')
     elif data[0] == 'V':
         videoList.append(job)
+        job.type = 'video'
         print ('job of type Video was appended to video list')
     else:
+        job.type = 'picture'
         pictureList.append(job)
         print ('job of type picture was appended to picture list')
-
-    s1.send(job.data)
-    print ('data sent to s1')
-    reply = s1.recv(1024)
-    print 'S1 executed. reply is: ', reply
-    
-    return reply
         
+    return 
+
+def doJob ():
+    #there is a video on the list
+    if not len(videoList) == 0:
+        job1 = videoList.pop(0)
+        s1.send(job1.data)
+        print ('data sent to s1')
+        reply = s1.recv(1024)
+        print 'S1 executed. reply is: ', reply
+        job1.conn.send(reply) 
+        print 'reply was sent back to ', addr
+
+        #there is a second video on the list
+        if not len(videoList) == 0:
+            job2 = videoList.pop(0)
+            s2.send(job2.data)
+            print ('data sent to s2')
+            reply = s2.recv(1024)
+            print 'S2 executed. reply is: ', reply
+            job2.conn.send(reply) 
+            print 'reply was sent back to ', addr
+
+            #there is music file on the list
+            if not len(musicList) == 0:
+                job3 = musicList.pop(0)
+                s3.send(job3.data)
+                print ('data sent to s3')
+                reply = s3.recv(1024)
+                print 'S3 executed. reply is: ', reply
+                job3.conn.send(reply) 
+                print 'reply was sent back to ', addr
+
+            #there were 2 videos, but no music
+            elif len(pictureList) > 2:
+                job3 = pictureList.pop(0)
+                s3.send(job3.data)
+                print ('data sent to s3')
+                reply = s3.recv(1024)
+                print 'S3 executed. reply is: ', reply
+                job3.conn.send(reply) 
+                print 'reply was sent back to ', addr
+
+            #there were 2 videos, no music, and less that 2 pictures
+            elif len(videoList) > 3:
+                job3 = videoList.pop(0)
+                s3.send(job3.data)
+                print ('data sent to s3')
+                reply = s3.recv(1024)
+                print 'S3 executed. reply is: ', reply
+                job3.conn.send(reply) 
+                print 'reply was sent back to ', addr
+
+        #there was only one video
+        elif not len(pictureList) == 0:
+            job2 = pictureList.pop(0)
+            s2.send(job2.data)
+            print ('data sent to s2')
+            reply = s2.recv(1024)
+            print 'S2 executed. reply is: ', reply
+            job2.conn.send(reply) 
+            print 'reply was sent back to ', addr
+
+            #there was one video, and there is a picture
+            if not len(musicList) == 0:
+                job3 = musicList.pop(0)
+                s3.send(job3.data)
+                print ('data sent to s3')
+                reply = s3.recv(1024)
+                print 'S3 executed. reply is: ', reply
+                job3.conn.send(reply) 
+                print 'reply was sent back to ', addr 
+
+            #there was only one video,there was a picture and no music     
+            elif len(pictureList) > 2:
+                job3 = pictureList.pop(0)
+                s3.send(job3.data)
+                print ('data sent to s3')
+                reply = s3.recv(1024)
+                print 'S3 executed. reply is: ', reply
+                job3.conn.send(reply) 
+                print 'reply was sent back to ', addr           
+
+        #there was only one video, no pictures
+        elif not len(musicList) == 0:
+            job3 = musicList.pop(0)
+            s3.send(job3.data)
+            print ('data sent to s3')
+            reply = s3.recv(1024)
+            print 'S3 executed. reply is: ', reply
+            job3.conn.send(reply) 
+            print 'reply was sent back to ', addr 
+
+            #there was only one video, no pictures and a music file
+            if len(musicList) > 2:
+                job2 = musicList.pop(0)
+                s2.send(job2.data)
+                print ('data sent to s2')
+                reply = s2.recv(1024)
+                print 'S2 executed. reply is: ', reply
+                job2.conn.send(reply) 
+                print 'reply was sent back to ', addr
+                
+    #there were no videos at all        
+    elif not len(pictureList) == 0:
+        job1 = pictureList.pop(0)
+        s1.send(job1.data)
+        print ('data sent to s1')
+        reply = s1.recv(1024)
+        print 'S1 executed. reply is: ', reply
+        job1.conn.send(reply)
+
+        #there were no videos, but there was a picture
+        if not len(pictureList) == 0:
+            job2 = pictureList.pop(0)
+            s2.send(job2.data)
+            print ('data sent to s2')
+            reply = s2.recv(1024)
+            print 'S2 executed. reply is: ', reply
+            job2.conn.send(reply) 
+            print 'reply was sent back to ', addr
+
+            #there were no videos, and two pictures, and there is music file
+            if not len(musicList) == 0:
+                job3 = musicList.pop(0)
+                s3.send(job3.data)
+                print ('data sent to s3')
+                reply = s3.recv(1024)
+                print 'S3 executed. reply is: ', reply
+                job3.conn.send(reply) 
+                print 'reply was sent back to ', addr
+
+            #there were no videos, 2 pictures and no music
+            elif len(pictureList) > 2:
+                job3 = pictureList.pop(0)
+                s3.send(job3.data)
+                print ('data sent to s3')
+                reply = s3.recv(1024)
+                print 'S3 executed. reply is: ', reply
+                job3.conn.send(reply) 
+                print 'reply was sent back to ', addr
+
+        #there were no videos, only one picture
+        elif not len(musicList) == 0:
+                job3 = musicList.pop(0)
+                s3.send(job3.data)
+                print ('data sent to s3')
+                reply = s3.recv(1024)
+                print 'S3 executed. reply is: ', reply
+                job3.conn.send(reply) 
+                print 'reply was sent back to ', addr
+
+                #there were no videos, only one picture and a music file
+                if len(musicList) > 2:
+                    job2 = musicList.pop(0)
+                    s2.send(job2.data)
+                    print ('data sent to s2')
+                    reply = s2.recv(1024)
+                    print 'S2 executed. reply is: ', reply
+                    job2.conn.send(reply) 
+                    print 'reply was sent back to ', addr
+                
+    #there are no videos and no pictures at all
+    elif not len(musicList) == 0:
+        job3 = musicList.pop(0)
+        s3.send(job3.data)
+        print ('data sent to s3')
+        reply = s3.recv(1024)
+        print 'S3 executed. reply is: ', reply
+        job3.conn.send(reply) 
+        print 'reply was sent back to ', addr
+
+        #there were no videos, no pictures at all
+        if len(musicList) > 2:
+            job1 = pictureList.pop(0)
+            s1.send(job.data)
+            print ('data sent to s1')
+            reply = s1.recv(1024)
+            print 'S1 executed. reply is: ', reply
+            job1.conn.send(reply)
+
+            #there were no videos, no pictures at all, and at least one music
+            if len(musicList) > 2:
+                job2 = pictureList.pop(0)
+                s1.send(job2.data)
+                print ('data sent to s2')
+                reply = s2.recv(1024)
+                print 'S2 executed. reply is: ', reply
+                job2.conn.send(reply) 
+            
+    return
+    
 
 try:
     s1 = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
@@ -88,10 +277,10 @@ while True:
             break
         print 'data type is ' + data[0] + ' number is ' + data[1]
         job = Job(data, conn, addr)
-        reply = enqueueJob(job)
-        
-        conn.send (reply)
-        print 'reply was sent back to ', addr
+        enqueueJob(job)
+        doJob()
+        # conn.send (reply)
+        # print 'reply was sent back to ', addr
         SClient.listen(5)
         
         
