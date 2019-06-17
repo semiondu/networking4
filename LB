@@ -22,27 +22,23 @@ class Job:
         self.type = ''
 
 
+class ClientThread (threading.Thread):
+    def __init__ (self, conn, addr):
+        self.conn = conn
+        self.addr = addr
+        threading.Thread.__init__ (self)
 
-class ClientThread ( threading.Thread ):
-    
-
-   def __init__ ( self, conn, addr):
-
-      self.conn = conn
-      self.addr = details
-      threading.Thread.__init__ ( self )
-
-   def run ( self ):
-
-      print ‘Received connection:’, self.addr [ 0 ]
-      data = self.conn.recv(1024)
-      job = Job(data, self.conn, self.addr)
-      enqueueJob(job)
-      print 'returned from enqueueJob'
-      doJob()
-      self.conn.close()
-      print ‘Closed connection:’, self.addr [ 0 ]
-
+    def run (self):
+        print ‘Received connection:’, self.addr [ 0 ]
+        data = self.conn.recv(1024)
+        job = Job(data, self.conn, self.addr)
+        enqueueJob(job)
+        print 'returned from enqueueJob'
+        doJob()
+        self.conn.close()
+        print ‘Closed connection:’, self.addr [ 0 ]
+        
+        
 
 def enqueueJob(job):
     
