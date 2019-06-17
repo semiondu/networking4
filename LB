@@ -25,7 +25,7 @@ class Job:
 
 class ClientThread ( threading.Thread ):
     
-    # Override Thread’s __init__ method to accept the parameters needed:
+
    def __init__ ( self, conn, addr):
 
       self.conn = conn
