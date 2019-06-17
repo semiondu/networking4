@@ -1,4 +1,6 @@
 import socket
+import threading
+
 
 # default port for socket
 PORT = 80
@@ -484,7 +486,7 @@ print "the socket has successfully connected to server3 on port == %s" %(server3
 SClient = socket.socket()
 SClient.bind(('', PORT))
 SClient.listen(5)
-SClient.settimeout(0)
+
 print "Client socket is listening"
 conn, addr = SClient.accept()
 
