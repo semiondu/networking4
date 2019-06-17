@@ -49,8 +49,8 @@ def enqueueJob(job):
         #job.type = 'video'
         print ('job of type Video was appended to video list')
     else:
-        job.type = 'picture'
-        #pictureList.append(job)
+        #job.type = 'picture'
+        pictureList.append(job)
         print ('job of type picture was appended to picture list')
 
     return
