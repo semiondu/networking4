@@ -1,4 +1,4 @@
-print import socket
+import socket
 import threading
 
 
@@ -444,7 +444,7 @@ SClient.bind(('', PORT))
 SClient.listen(5)
 
 #The LB starts to listen
-print "LB is ready to accept requests"
+print 'LB is ready to accept requests'
 #conn, addr = SClient.accept()
 
 #A loop to accept requests and process them
