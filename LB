@@ -19,7 +19,7 @@ class Job:
         self.data = data
         self.conn = conn
         self.addr = addr
-        self.type = ''
+        #self.type = ''
 
 
 class ClientThread (threading.Thread):
@@ -41,16 +41,16 @@ class ClientThread (threading.Thread):
 def enqueueJob(job):
     
     if job.data[0] == 'M':
-        job.type = 'music'
+        #job.type = 'music'
         musicList.append(job)
         print ('job of type Music was appended to music list')
-    elif data[0] == 'V':
+    elif job.data[0] == 'V':
         videoList.append(job)
-        job.type = 'video'
+        #job.type = 'video'
         print ('job of type Video was appended to video list')
     else:
         job.type = 'picture'
-        pictureList.append(job)
+        #pictureList.append(job)
         print ('job of type picture was appended to picture list')
 
     return
