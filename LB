@@ -29,16 +29,14 @@ class ClientThread (threading.Thread):
         threading.Thread.__init__ (self)
 
     def run (self):
-        print ‘Received connection:’, self.addr [ 0 ]
+        print 'recieved connection: ' ,self.addr
         data = self.conn.recv(1024)
-        job = Job(data, self.conn, self.addr)
+        job = Job(data, self.conn, self,addr)
         enqueueJob(job)
-        print 'returned from enqueueJob'
+        print 'returned fron enqueueJob'
         doJob()
         self.conn.close()
-        print ‘Closed connection:’, self.addr [ 0 ]
-        
-        
+        print 'connection closed with: ', self.addr
 
 def enqueueJob(job):
     
