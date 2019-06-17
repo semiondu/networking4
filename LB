@@ -14,6 +14,7 @@ musicList = []
 videoList = []
 pictureList = []
 
+#Job object hold all the information about the requet
 class Job:
     def __init__(self, data, conn, addr):
         self.data = data
@@ -21,7 +22,7 @@ class Job:
         self.addr = addr
         #self.type = ''
 
-
+#Threading object to allow parallel work of the LB
 class ClientThread (threading.Thread):
     def __init__ (self, conn, addr):
         self.conn = conn
@@ -38,8 +39,9 @@ class ClientThread (threading.Thread):
         self.conn.close()
         print 'connection closed with: ', self.addr
 
+#Function to put a Job in a proper queue, for the correct sorting to servers
 def enqueueJob(job):
-    
+
     if job.data[0] == 'M':
         #job.type = 'music'
         musicList.append(job)
@@ -55,6 +57,7 @@ def enqueueJob(job):
 
     return
 
+#The main sorting functions. proper jobs are being seeked, and allocated to the best availble server
 def doJob():
     #there is a video on the list
     if not len(videoList) == 0:
@@ -234,6 +237,7 @@ def doJob():
                 s2.send(job2.data)
                 print ('data sent to s2')
 
+                #all servers recieved jobs
                 reply3 = s3.recv(1024)
                 print 'S3 executed. reply is: ', reply3
                 job3.conn.send(reply3)
@@ -251,6 +255,7 @@ def doJob():
 
                 return
 
+            #only servers 1 and 3 got jobs
             else:
                 reply3 = s3.recv(1024)
                 print 'S3 executed. reply is: ', reply3
@@ -263,6 +268,7 @@ def doJob():
                 print 'reply was sent back to ', job1.addr
 
                 return
+        #only server1 got a job
         else:
             reply1 = s1.recv(1024)
             print 'S1 executed. reply is: ', reply1
@@ -292,6 +298,7 @@ def doJob():
                 s3.send(job3.data)
                 print ('data sent to s3')
 
+                #all servers got jobs
                 reply3 = s3.recv(1024)
                 print 'S3 executed. reply is: ', reply3
                 job3.conn.send(reply3)
@@ -316,6 +323,7 @@ def doJob():
                 s3.send(job3.data)
                 print ('data sent to s3')
 
+                #all servers got jobs
                 reply3 = s3.recv(1024)
                 print 'S3 executed. reply is: ', reply3
                 job3.conn.send(reply3)
@@ -333,6 +341,7 @@ def doJob():
 
                 return
 
+            #only servers 1 and 2 got jobs
             else:
                 reply2 = s2.recv(1024)
                 print 'S2 executed. reply is: ', reply2
@@ -360,6 +369,7 @@ def doJob():
                     s2.send(job2.data)
                     print ('data sent to s2')
 
+                    #all servers got jobs
                     reply3 = s3.recv(1024)
                     print 'S3 executed. reply is: ', reply3
                     job3.conn.send(reply3)
@@ -377,6 +387,7 @@ def doJob():
 
                     return
 
+                #only server 1 and 3 got jobs
                 else:
                     reply3 = s3.recv(1024)
                     print 'S3 executed. reply is: ', reply3
@@ -389,7 +400,7 @@ def doJob():
                     print 'reply was sent back to ', job1.addr
 
                     return
-
+        #only server 2 got job
         else:
             reply2 = s2.recv(1024)
             print 'S2 executed. reply is: ', reply2
@@ -415,45 +426,38 @@ def doJob():
             if len(musicList) > 2:
                 job2 = pictureList.pop(0)
                 s2.send(job2.data)
-                print ('data sent to s2')
-                reply2 = s2.recv(1024)
-                print 'S2 executed. reply is: ', reply2
-                job2.conn.send(reply2)
-                print 'reply was sent back to ', job2.addr
+                print ('recieved request ', job2.data, ' from ' ,job2.addr )
 
+                #all servers got jobs
                 reply3 = s3.recv(1024)
-                print 'S3 executed. reply is: ', reply3
                 job3.conn.send(reply3)
                 print 'reply was sent back to ' ,job3.addr
 
                 reply2 = s2.recv(1024)
-                print 'S2 executed. reply is: ', reply2
                 job2.conn.send(reply2)
                 print 'reply was sent back to ', job2.addr
 
                 reply1 = s1.recv(1024)
-                print 'S1 executed. reply is: ', reply1
                 job1.conn.send(reply1)
                 print 'reply was sent back to ', job1.addr
 
                 return
 
+            #only servers 1 and 3 got jobs
             else:
                 reply3 = s3.recv(1024)
-                print 'S3 executed. reply is: ', reply3
                 job3.conn.send(reply3)
                 print 'reply was sent back to ' ,job3.addr
 
                 reply1 = s1.recv(1024)
-                print 'S1 executed. reply is: ', reply1
                 job1.conn.send(reply1)
                 print 'reply was sent back to ', job1.addr
 
                 return
 
+        #only server 3 got job
         else:
             reply3 = s3.recv(1024)
-            print 'S3 executed. reply is: ', reply3
             job3.conn.send(reply3)
             print 'reply was sent back to ' ,job3.addr
 
@@ -462,69 +466,33 @@ def doJob():
 
     return
 
-
-try:
-    s1 = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-    print "Socket2 successfully created"
-except socket.error as err:
-    print "socket creation failed with error %s" %(err)
-
-try:
-    s2 = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-    print "Socket2 successfully created"
-except socket.error as err:
-    print "socket creation failed with error %s" %(err)
-
-try:
-    s3 = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-    print "Socket3 successfully created"
-except socket.error as err:
-    print "socket creation failed with error %s" %(err)
-
+print 'LB Started'
+print 'Connecting to servers'
+#Creating the connections to the Servers
+s1 = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+s3 = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+s2 = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 
 # connecting to server1
 s1.connect((server1_ip, PORT))
-print "the socket has successfully connected to server1 on port == %s" %(server1_ip)
-
 
 # connecting to server2
 s2.connect((server2_ip, PORT))
-print "the socket has successfully connected to server2 on port == %s" %(server2_ip)
 
 # connecting to server3
 s3.connect((server3_ip, PORT))
-print "the socket has successfully connected to server3 on port == %s" %(server3_ip)
-
 
 #creating a listening Socket
 SClient = socket.socket()
 SClient.bind(('', PORT))
 SClient.listen(5)
 
-print "Client socket is listening"
-conn, addr = SClient.accept()
+#The LB starts to listen
+print "LB is ready to accept requests"
+#conn, addr = SClient.accept()
 
+#A loop to accept requests and process them
 while True:
     conn, addr = SClient.accept()
     ClientThread(conn, addr).start()
-    # for i in range(5):
-    #     conn, addr = SClient.accept()
-    #     print('Connected by', addr, i)
-    #     i = i+1
-    #     data = conn.recv(1024)
-    #     if not data:
-    #         break
-    #     job = Job(data, conn, addr)
-    #     enqueueJob(job)
-    #     print 'returned from enqueueJob'
-    #     SClient.listen(0)
-    # doJob()
-# print musicList
-# print videoList
-# print pictureList
-# doJob()
-    #conn, addr = SClient.accept()
-    #print ('accepted another one', addr)
-        # conn.send (reply)
-        # print 'reply was sent back to ', addr
     
